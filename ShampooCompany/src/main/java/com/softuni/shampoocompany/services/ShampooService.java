@@ -12,4 +12,9 @@ public interface ShampooService {
     List<Shampoo> findByPriceGreaterThanOrderByPriceDesc(String price);
 
     int countAllByPriceLessThan(String price);
+
+    List<Shampoo> findAllByIngredients(List<String> ingredientsNames);
+
+//    List<Shampoo> findByIngredientsCountLessThan(String ingredientsCount);
+
 }

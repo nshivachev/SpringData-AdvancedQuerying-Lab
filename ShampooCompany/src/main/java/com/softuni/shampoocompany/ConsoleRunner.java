@@ -43,15 +43,36 @@ public class ConsoleRunner implements CommandLineRunner {
         ingredientService.findAllByNameStartingWith(scanner.nextLine()).forEach(System.out::println);
 
         //Task 5
-        List<String> ingredients = new ArrayList<>();
-        String ingredient = scanner.nextLine();
-        while (!ingredient.isBlank()) {
-            ingredients.add(ingredient);
-            ingredient = scanner.nextLine();
-        }
-        ingredientService.findAllByNameInOrderByPriceAsc(ingredients).forEach(System.out::println);
+        ingredientService.findAllByNameInOrderByPriceAsc(getListOfInputData(scanner)).forEach(System.out::println);
 
         //Task 6
         System.out.println(shampooService.countAllByPriceLessThan(scanner.nextLine()));
+
+        //Task7
+        shampooService.findAllByIngredients(getListOfInputData(scanner)).forEach(System.out::println);
+
+        //Task8
+//        shampooService.findByIngredientsCountLessThan(scanner.nextLine()).forEach(System.out::println);
+
+        //Task 9
+        ingredientService.deleteByName(scanner.nextLine());
+
+        //Task 10
+        ingredientService.updateAllPrice();
+
+        //Task 11
+        ingredientService.updatePriceByName(getListOfInputData(scanner));
+    }
+
+    private static List<String> getListOfInputData(Scanner scanner) {
+        final List<String> inputDataList = new ArrayList<>();
+
+        String input = scanner.nextLine();
+        while (!input.isBlank()) {
+            inputDataList.add(input);
+            input = scanner.nextLine();
+        }
+
+        return inputDataList;
     }
 }
